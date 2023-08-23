@@ -1,0 +1,45 @@
+plugins {
+  //  id 'com.android.library'
+    id 'java-library'
+   // id 'org.jetbrains.kotlin.jvm'
+}
+
+jar {
+    manifest {
+        // Only use the "-v2" key here if your checks have been updated to the
+        // new 3.0 APIs (including UAST)
+        attributes('Lint-Registry-V2': 'com.igrs.lint_rule.IgrsRegistry')
+
+//            configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+//        }
+    }
+
+}
+
+dependencies {
+
+   // implementation 'androidx.appcompat:appcompat:1.6.1'
+   // implementation 'com.google.android.material:material:1.8.0'
+    testImplementation 'junit:junit:4.13.2'
+//    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    // 官方提供的Lint相关API，并不稳定，每次AGP升级都可能会更改，且并不是向下兼容的
+    compileOnly "com.android.tools.lint:lint-api:30.2.1"
+// 目前Android中内置的lint检测规则
+    compileOnly "com.android.tools.lint:lint-checks:30.2.1"
+
+    compileOnly "com.android.tools.lint:lint:30.2.1"
+
+   compileOnly 'com.maxmind.geoip2:geoip2:4.1.0'
+   // compileOnly fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+   // compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+   // lintJarOutput files(jar)
+}
+configurations {
+    lintJarOutput
+}
+dependencies {
+    lintJarOutput files(jar)
+}
+defaultTasks 'assemble'

@@ -1,0 +1,22 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        maven {url 'http://10.1.35.75:18081/nexus/repository/maven-releases' //仓库地址
+            allowInsecureProtocol true //是否支持http
+        }
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "lint"
+include ':app'
+include ':lint_rule'
+include ':lint_aar'
+include ':test'
